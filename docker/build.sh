@@ -4,16 +4,16 @@ cp -a /src /build
 cd /build
 git clean -fdx || :
 
-cp -a /packages .
+#cp -a /packages .
 nuget restore
 
-# test
-xbuild
+# test     
+msbuild
 nunit-console test/test.csproj
 
 # build
 cd conjur-api
-xbuild \
+msbuild \
   /property:DelaySign=true \
   /property:KeyOriginatorFile=/src/conjur-sn.pub \
-  /property:configuration=Release
+  /property:Configuration=Release
