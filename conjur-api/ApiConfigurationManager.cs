@@ -63,7 +63,8 @@ namespace Conjur
                     lock (locker) {
                         if (tokenRefreshTimeout == null) {
                             string value = ConfigurationManager.AppSettings.Get (TOKEN_REFRESH_TIMEOUT);
-                            tokenRefreshTimeout = 420000; //7 minutes
+                            tokenRefreshTimeout = 420000 / 2 + 3; //7 minutes
+                            
                             if (!string.IsNullOrWhiteSpace (value)) {
                                 tokenRefreshTimeout = Convert.ToUInt32 (value);
                             }
